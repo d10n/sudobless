@@ -2,6 +2,11 @@
 
 Grant a terminal a sudo session
 
+## Usage
+```
+sudobless <pid of shell>
+```
+
 ## Example
 
 User ensures sudo timestamp file exists:
