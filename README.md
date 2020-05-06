@@ -42,3 +42,4 @@ install -T -m744 -o root -g root sudobless.py /usr/local/bin/sudobless
 
 * Use at your own risk. If you mess something up, run `sudo -K` as the user you blessed to wipe all the sudo sessions.
 * This is tested on Arch Linux (kernel 5.5) x86_64 with sudo >= 1.8.22. It might not run on non-Linux
+* The python is draft quality but it should be easy to read / audit
