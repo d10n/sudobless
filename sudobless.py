@@ -20,6 +20,7 @@ except Exception:
 
 pid = int(sys.argv[1])
 VERBOSE = 'VERBOSE' in os.environ
+DRY_RUN = 'DRY_RUN' in os.environ
 
 TS_GLOBAL = 0x01
 TS_TTY = 0x02
@@ -156,4 +157,5 @@ with open('/var/run/sudo/ts/{}'.format(pwd.getpwuid(uid).pw_name), 'r+b') as f:
         print('writing:')
         print('position: ', (f.tell() // te.size) + 1)
         te.print()
-    f.write(te)
+    if not DRY_RUN:
+        f.write(te)
