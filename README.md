@@ -1,6 +1,6 @@
 # sudobless
 
-Grant a terminal a sudo session
+Let root grant a passwordless sudo session to a non-root shell. The user of the target shell must be in sudoers.
 
 ## Usage
 ```
