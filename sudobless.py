@@ -146,8 +146,9 @@ with open('/var/run/sudo/ts/{}'.format(pwd.getpwuid(uid).pw_name), 'r+b') as f:
     te.sid = sid
     te.u.ttydev = tty_nr
 
-    te.start_time.tv_sec = start_time_tv_sec
-    te.start_time.tv_nsec = start_time_tv_nsec
+    if not found_entry:
+        te.start_time.tv_sec = start_time_tv_sec
+        te.start_time.tv_nsec = start_time_tv_nsec
 
     gettime_ns = time.clock_gettime_ns(time.CLOCK_BOOTTIME)
     te.ts.tv_sec = gettime_ns // 1000000000
