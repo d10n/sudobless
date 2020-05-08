@@ -85,20 +85,21 @@ class TimestampEntry(ctypes.Structure):
         ('u', TimestampU),
     ]
 
-    def print(self):
-        print('version:', self.version)
-        print('size:', self.size)
-        print('type:', self.type)
-        print('flags:', flags_to_string(self.flags))
-        print('auth uid:', self.auth_uid)
-        print('session ID:', self.sid)
-        print('start time (sec):', self.start_time.tv_sec)
-        print('start time (nsec):', self.start_time.tv_nsec)
-        print('time stamp (sec):', self.ts.tv_sec)
-        print('time stamp (nsec):', self.ts.tv_nsec)
-        print('tty:', ttydev_to_string(self.u.ttydev))
-        print('parent pid:', self.u.ppid)
-        print()
+    def __str__(self):
+        return '\n'.join([
+            'version: ' + str(self.version),
+            'size: ' + str(self.size),
+            'type: ' + str(self.type),
+            'flags: ' + flags_to_string(self.flags),
+            'auth uid: ' + str(self.auth_uid),
+            'session ID: ' + str(self.sid),
+            'start time (sec): ' + str(self.start_time.tv_sec),
+            'start time (nsec): ' + str(self.start_time.tv_nsec),
+            'time stamp (sec): ' + str(self.ts.tv_sec),
+            'time stamp (nsec): ' + str(self.ts.tv_nsec),
+            'tty: ' + ttydev_to_string(self.u.ttydev),
+            'parent pid: ' + str(self.u.ppid),
+        ])
 
 
 stat_info = os.lstat('/proc/{}'.format(pid))
@@ -131,7 +132,8 @@ with open('/var/run/sudo/ts/{}'.format(pwd.getpwuid(uid).pw_name), 'r+b') as f:
         entry_number += 1
         if VERBOSE:
             print('position: ', entry_number)
-            te.print()
+            print(te)
+            print()
         if te.u.ttydev == tty_nr and te.sid == sid:
             found_entry = True
     if found_entry:
@@ -157,6 +159,6 @@ with open('/var/run/sudo/ts/{}'.format(pwd.getpwuid(uid).pw_name), 'r+b') as f:
     if VERBOSE:
         print('writing:')
         print('position: ', (f.tell() // te.size) + 1)
-        te.print()
+        print(te)
     if not DRY_RUN:
         f.write(te)
