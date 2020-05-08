@@ -9,7 +9,7 @@ sudobless <pid of shell>
 
 ## Example
 
-User ensures sudo timestamp file exists:
+User fails to sudo and checks the shell pid:
 ```
 user@host:~$ sudo -i
 [sudo] password for user: ^C
@@ -18,7 +18,7 @@ user@host:~$ echo $$
 user@host:~$ 
 ```
 
-Root blesses user:
+Root blesses user with the shell pid:
 ```
 root@host:~# sudobless 96683
 root@host:~# 
