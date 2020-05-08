@@ -9,6 +9,8 @@ sudobless <pid of shell>
 
 ## Example
 
+<table><thead><tr><td>User terminal</td><td>Root terminal</td></tr></thead><tbody><tr><td rowspan="2">
+
 User fails to sudo and checks the shell pid:
 ```
 user@host:~$ sudo -i
@@ -17,18 +19,21 @@ user@host:~$ echo $$
 96683
 user@host:~$ 
 ```
+<td rowspan="2"></td></tr><tr></tr><tr><td rowspan="2"></td><td rowspan="2">
 
 Root blesses user with the shell pid:
 ```
 root@host:~# sudobless 96683
 root@host:~# 
 ```
+</td></tr><tr></tr><tr><td>
 
 User can now sudo without a password prompt:
 ```
 user@host:~$ sudo -i
 root@host:~# 
 ```
+</td><td></td></tr></tbody></table>
 
 ## Install
 
